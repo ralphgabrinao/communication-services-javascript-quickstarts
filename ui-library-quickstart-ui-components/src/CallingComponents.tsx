@@ -3,6 +3,7 @@
 import {
   CameraButton,
   ControlBar,
+  ControlBarButtonStyles,
   EndCallButton,
   GridLayout,
   MicrophoneButton,
@@ -31,6 +32,13 @@ export const CallingComponents = (): JSX.Element => {
       justifyContent: 'center'
     }
   };
+
+  const controlBarButtonStyle: ControlBarButtonStyles = {
+    root: {
+      background: '#ffff00'
+    }
+  };
+
   const [videoButtonChecked, setVideoButtonChecked] = useState<boolean>(false);
   const [audioButtonChecked, setAudioButtonChecked] = useState<boolean>(false);
   const [screenshareButtonChecked, setScreenshareButtonChecked] = useState<boolean>(false);
@@ -48,14 +56,15 @@ export const CallingComponents = (): JSX.Element => {
 
       {/* Control Bar with default set up */}
       <ControlBar styles={controlBarStyle}>
-        <CameraButton checked={videoButtonChecked} onClick={() => setVideoButtonChecked(!videoButtonChecked)} />
-        <MicrophoneButton checked={audioButtonChecked} onClick={() => setAudioButtonChecked(!audioButtonChecked)} />
+        <CameraButton styles={controlBarButtonStyle} checked={videoButtonChecked} onClick={() => setVideoButtonChecked(!videoButtonChecked)} />
+        <MicrophoneButton styles={controlBarButtonStyle} checked={audioButtonChecked} onClick={() => setAudioButtonChecked(!audioButtonChecked)} />
         <ScreenShareButton
+          styles={controlBarButtonStyle}
           checked={screenshareButtonChecked}
           onClick={() => setScreenshareButtonChecked(!screenshareButtonChecked)}
         />
-        <DevicesButton menuProps={exampleOptionsMenuProps} />
-        <EndCallButton />
+        <DevicesButton styles={controlBarButtonStyle} menuProps={exampleOptionsMenuProps} />
+        <EndCallButton styles={controlBarButtonStyle} />
       </ControlBar>
     </Stack>
   );
